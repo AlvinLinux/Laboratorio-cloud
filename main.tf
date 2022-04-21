@@ -35,3 +35,18 @@ ingress {
     Name = "allow_SSH"
   }
 }
+
+resource "aws_vpc" "VpcPrueba" {
+
+    cidr_block = "172.16.0.0/16"
+    tags = { 
+      Name = "test-terraform-vpc"
+    }
+}
+
+resource "aws_subnet" "privateSubnet" {
+  vpc_id = aws_vpc.VpcPrueba.id
+  cidr_block = "172.16.1.0/24"
+  availability_zone = "us-east-1a"
+
+}
